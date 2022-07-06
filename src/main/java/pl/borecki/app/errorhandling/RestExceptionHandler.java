@@ -43,6 +43,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         StringBuilder constraintViolations = new StringBuilder();
         for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
             constraintViolations.append(violation.getMessage());
+            constraintViolations.append(". ");
         }
         ApiError apiError = new ApiError(
                 HttpStatus.UNPROCESSABLE_ENTITY, e.getClass().getSimpleName(), constraintViolations.toString());
